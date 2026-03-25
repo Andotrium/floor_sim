@@ -27,7 +27,7 @@ You must have [Node.js](https://nodejs.org/) installed on your "Master" laptop.
 ### 1. Clone the Repository
 
 ```bash
-git clone [https://github.com/ansh94082/trade-terminal.git](https://github.com/ansh94082/floorsim.git)
+git clone https://github.com/ansh94082/floor_sim
 cd floorsim
 npm install
 ```
@@ -42,9 +42,9 @@ Note: If you change the config after the database is created, delete the trading
 node server.js
 ```
 
-### Access Roles:
-## The Projector (Live Rankings): http://localhost:3000/leaderboard.html
+## Access Roles:
+### The Projector (Live Rankings): http://localhost:3000/leaderboard.html
 
-## The Admin (God-Mode): http://localhost:3000/admin.html
+### The Admin (God-Mode): http://localhost:3000/admin.html
 
-## The Accountants (Trade Entry): http://[MASTER_IP_ADDRESS]:3000/accountant.html
+### The Accountants (Trade Entry): http://[MASTER_IP_ADDRESS]:3000/accountant.html
