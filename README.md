@@ -30,6 +30,7 @@ You must have [Node.js](https://nodejs.org/) installed on your "Master" laptop.
 git clone [https://github.com/ansh94082/trade-terminal.git](https://github.com/ansh94082/floorsim.git)
 cd floorsim
 npm install
+```
 
 ### 2. Configure the Market
 Edit the config.json file to set your teams, starting cash, and initial stock prices.
@@ -39,7 +40,7 @@ Note: If you change the config after the database is created, delete the trading
 
 ```bash
 node server.js
-
+```
 
 ### Access Roles:
 ## The Projector (Live Rankings): http://localhost:3000/leaderboard.html
