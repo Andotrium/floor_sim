@@ -106,11 +106,13 @@ app.get('/api/leaderboard', (req, res) => {
     db.all("SELECT * FROM teams", [], (err, teams) => {
         if (err) return res.status(500).send(err);
 
-        // Map through teams and calculate Net Worth based on config.json prices
+        // Map through teams and calculate Net Worth based on config.json FINAL prices
         const leaderboard = teams.map(team => {
             let stockValue = 0;
             STOCKS.forEach(s => {
-                stockValue += (team[s.ticker] || 0) * s.price;
+                // CHANGE: Use s.final instead of s.price
+                const quantity = team[s.ticker] || 0;
+                stockValue += quantity * s.final; 
             });
 
             return {
