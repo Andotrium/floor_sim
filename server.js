@@ -17,6 +17,18 @@ const TEAM_NAMES = config.TEAM_NAMES;
 app.use(bodyParser.json());
 app.use(express.static('public'));
 
+// Transaction Log File
+const LOG_FILE = path.join(__dirname, 'transactions.log');
+if (!fs.existsSync(LOG_FILE)) {
+    fs.writeFileSync(LOG_FILE, `[${new Date().toISOString()}] [SERVER_START] Transaction log initialized\n`);
+}
+
+function logTransaction(type, details) {
+    const timestamp = new Date().toISOString();
+    const line = `[${timestamp}] [${type}] ${details}\n`;
+    fs.appendFileSync(LOG_FILE, line);
+}
+
 db.serialize(() => {
     // Create columns based on Tickers
     const stockColumns = TICKERS.map(t => `${t} INTEGER DEFAULT 0`).join(', ');
@@ -92,6 +104,7 @@ app.post('/api/admin/import-csv', express.text({ limit: '10mb' }), (req, res) =>
             });
             db.run("COMMIT", (err) => {
                 if (err) throw err;
+                logTransaction('CSV_IMPORT', `Imported ${dataRows.length} team(s) from CSV`);
                 res.send("Database updated successfully");
             });
         } catch (error) {
@@ -131,6 +144,7 @@ app.post('/api/admin/add-team', (req, res) => {
     const { name } = req.body;
     db.run(`INSERT INTO teams (name, cash) VALUES (?, ?)`, [name, 1000000], function(err) {
         if (err) return res.status(500).send(err.message);
+        logTransaction('ADD_TEAM', `Team="${name}" added with ID=${this.lastID} | Cash=₹1000000`);
         res.send(`Team ${name} added with ID ${this.lastID}`);
     });
 });
@@ -162,8 +176,10 @@ function processTrade(buyerId, sellerId, stock, qty, totalCost, res) {
         if (sellerId !== 'BANK') {
             db.run(`UPDATE teams SET cash = cash + ?, ${stock} = ${stock} - ? WHERE id = ?`, [totalCost, qty, sellerId]);
         }
-        db.run(`INSERT INTO trades (buyer_id, seller_id, stock, qty, price) VALUES (?, ?, ?, ?, ?)`, 
+        db.run(`INSERT INTO trades (buyer_id, seller_id, stock, qty, price) VALUES (?, ?, ?, ?, ?)`,
             [buyerId, sellerId, stock, qty, totalCost / qty]);
+
+        logTransaction('TRADE', `Buyer=${buyerId} | Seller=${sellerId} | Stock=${stock} | Qty=${qty} | Price=${totalCost / qty} | Total=₹${totalCost}`);
         res.send("Trade processed successfully!");
     });
 }
@@ -171,8 +187,16 @@ function processTrade(buyerId, sellerId, stock, qty, totalCost, res) {
 app.post('/api/admin/update', (req, res) => {
     const { teamId, column, value } = req.body;
     db.run(`UPDATE teams SET ${column} = ? WHERE id = ?`, [value, teamId], (err) => {
+        if (!err) logTransaction('ADMIN_UPDATE', `Team=${teamId} | ${column} set to ${value}`);
         res.send(err ? "Update Failed" : "Update Successful");
     });
+});
+
+app.get('/api/admin/logs', (req, res) => {
+    if (!fs.existsSync(LOG_FILE)) return res.status(200).send('No transactions logged yet.');
+    res.setHeader('Content-Type', 'text/plain');
+    res.setHeader('Content-Disposition', 'attachment; filename=transactions.log');
+    res.sendFile(LOG_FILE);
 });
 
 app.listen(3000, () => console.log('Server Live on http://localhost:3000'));
