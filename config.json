@@ -1,22 +1,28 @@
 {
   "STOCKS": [
-    {"ticker": "RELIANCE", "price": 500 , "final": 600},
-    {"ticker": "TATA", "price": 1200, "final": 1200},
-    {"ticker": "ZOMATO", "price": 150, "final": 150},
-    {"ticker": "ZOMerATO", "price": 150, "final": 150},
-    {"ticker": "ZOMATetwO", "price": 150, "final": 150},
-    {"ticker": "ZOMATweO", "price": 150, "final": 150},
-    {"ticker": "wsZOMATO", "price": 150, "final": 150},
-    {"ticker": "wqwMATO", "price": 150, "final": 150},
-    {"ticker": "artwwMATO", "price": 150, "final": 150},
-    {"ticker": "ppwMATO", "price": 150, "final": 150},
-    {"ticker": "llwMATO", "price": 150, "final": 150},
-    {"ticker": "lltwMATO", "price": 150, "final": 150},
-    {"ticker": "lelwMATO", "price": 150, "final": 150},
-    {"ticker": "wertywMATO", "price": 150, "final": 150},
-    {"ticker": "ergwMATO", "price": 150, "final": 150},
-    {"ticker": "INFOSYS", "price": 1600, "final": 1600}
+    {"ticker": "BharatFin", "price": 1892.00, "final": 1682.2727},
+    {"ticker": "AutoVolt", "price": 285.00, "final": 290.96},
+    {"ticker": "PrimeStack", "price": 4281.00, "final": 4210.16},
+    {"ticker": "GlobalPetro", "price": 3420.00, "final": 3009.112},
+    {"ticker": "PureLife", "price": 2915.00, "final": 155.925},
+    {"ticker": "BharatDrive", "price": 2157.00, "final": 2130.09},
+    {"ticker": "ZenPharma", "price": 928.00, "final": 1276.00},
+    {"ticker": "RailCapital", "price": 617.00, "final": 858.979},
+    {"ticker": "AlphaTrade", "price": 215.00, "final": 278.156},
+    {"ticker": "Silk & Soul", "price": 320.00, "final": 356.40},
+    {"ticker": "ConnectMax", "price": 745.00, "final": 1070.9375},
+    {"ticker": "ByteArmor", "price": 410.00, "final": 486.234},
+    {"ticker": "Solaris", "price": 799.00, "final": 732.208},
+    {"ticker": "BioGen", "price": 463.00, "final": 665.56},
+    {"ticker": "EquityEdge", "price": 2310.70, "final": 2588.792},
+    {"ticker": "LuxeGloss", "price": 745.00, "final": 829.74375},
+    {"ticker": "InfraXpress", "price": 1246.00, "final": 1853.81},
+    {"ticker": "TerraNova", "price": 1665.00, "final": 2487.978}
   ],
   "INITIAL_CASH": 1000000,
-  "TEAM_NAMES": ["Team m1", "Team 2", "Team 3", "Team 4" , "teajm5", "Teamj 4" , "teasm5", "Teeam 4" , "teaqm5", "Teamww 4" , "team5w", "Team 4w" , "team5w", "Team w4" , "teamw5"]
+  "TEAM_NAMES": [
+    "Team m1", "Team 2", "Team 3", "Team 4", "teajm5", "Teamj 4", 
+    "teasm5", "Teeam 4", "teaqm5", "Teamww 4", "team5w", "Team 4w", 
+    "team5w", "Team w4", "teamw5"
+  ]
 }
